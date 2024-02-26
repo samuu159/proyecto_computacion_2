@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome.service import Service
 from unidecode import unidecode
 import csv
 import re
@@ -15,12 +16,11 @@ def ejecutar_scrapeo():
     options = Options()
     options.add_argument('--disable-notifications')
 
-    # Ruta al controlador de Chrome (reemplaza con la ubicación de tu controlador)
-    chrome_driver_path = "chromedriver-win64/chromedriver.exe"
+    # Ruta al controlador de Chrome
+    s=Service('chromedriver-win64/chromedriver.exe')
 
     # Crear una instancia de ChromeDriver
-    driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
-
+    driver = webdriver.Chrome(service=s, options=options)
     # Navegar a la URL
     driver.get('https://mister.mundodeportivo.com')
     time.sleep(2)
