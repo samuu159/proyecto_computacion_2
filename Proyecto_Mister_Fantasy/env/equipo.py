@@ -7,7 +7,6 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.service import Service
 from unidecode import unidecode
-import csv
 import re
 import time
 import mysql.connector
