@@ -28,12 +28,10 @@ class Programa(Main):
         jugador.iniciar_sesion()
 
         #conexion = bbdd.MySQL().conexion_bbdd()
+        #print(conexion)
+
+        conexion = bbdd.MySQL().conexion_ubuntu()
         print(conexion)
-        try:
-            conexion = bbdd.MySQL().conexion_ubuntu()
-            print(conexion)
-        except Exception as e:
-            print("Error al conectar a la base de datos:", e)
 
         bbdd.MySQL().consultar_usuario(conexion)
 

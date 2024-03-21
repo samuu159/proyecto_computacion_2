@@ -47,7 +47,7 @@ class MySQL(BBDD):
                 remote_bind_address=('localhost', 3306)  # Dirección IP y puerto MySQL
             ) as tunnel:
                 conexion = mysql.connector.connect(
-                    user='root',
+                    user='admin',
                     password='7NxM!Br@7TH4_FV',
                     host='127.0.0.1',
                     port=tunnel.local_bind_port,
