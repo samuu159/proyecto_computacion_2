@@ -17,14 +17,20 @@ class BBDD(ABC):
         pass
 
     @abstractmethod
-    def insertar_jugador_bbdd(self, lista_datos_jugadores, conexion):
+    def insertar_jugador_bbdd(self, datos_jugadores):
         pass
 
     @abstractmethod
-    def insertar_equipo_bbdd(self, lista_datos_equipos, conexion):
+    def insertar_equipo_bbdd(self, datos_equipos):
         pass
 
+    @abstractmethod
+    def insertar_equipo_usuario(self, datos_equipo_usuario):
+        pass
 
+    @abstractmethod
+    def insertar_mercado_usuario(self, datos_mercado_usuario):
+        pass
 
     @abstractmethod
     def cerrar_conexion(self, conexion):

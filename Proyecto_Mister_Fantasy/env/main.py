@@ -18,6 +18,10 @@ class Main(ABC):
     def main_equipo_usuario(self):
         pass
 
+    @abstractmethod
+    def main_mercado_usuario(self):
+        pass
+
 class Programa(Main):
     def main_jugadores(self):
         # Obtener una instancia de ChromeDriver
