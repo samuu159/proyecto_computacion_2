@@ -8,9 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import TimeoutException
 import time
-import mysql.connector
-import bbdd
 from unidecode import unidecode
+import bbdd
 
 class JugadoresAbstractos(ABC):
     def __init__(self):
@@ -133,28 +132,30 @@ class Jugadores(JugadoresAbstractos):
 
     def link_jugadores(self):
         try:
-            self.hide_ads()
+            #self.hide_ads()
 
             boton = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located((By.XPATH, '//*[@id="content"]/header/div[2]/ul/li[5]'))
             )
             boton.click()
-            self.hide_ads()
+            
+            #self.hide_ads()
+            
 
             boton = WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[4]/div[1]/button[2]'))
+                EC.visibility_of_element_located((By.XPATH, '//*[@id="inner-content"]/div[1]/div[1]/button[2]'))
             )
             boton.click()
-            #self.refresh_page()
-            self.hide_ads()
+            
+            #self.hide_ads()
 
             # Esperar a que los botones en el bucle sean visibles y hacer clic en ellos
             seguir = True
             while seguir:
                 try:
                     time.sleep(2)
-                    boton = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[7]/div[3]/div[3]/div[1]/button'))
+                    boton = WebDriverWait(self.driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[6]/div[3]/div[3]/div[1]/button'))
                     )
                     boton.click()
                     print("Botón 'Siguiente' clicado.")
@@ -189,19 +190,17 @@ class Jugadores(JugadoresAbstractos):
     def datos_jugadores(self):
         try:
             links_jugadores = self.link_jugadores()
-            lista_datos_jugadores = []  # Lista para almacenar los datos de todos los jugadores
+            #lista_datos_jugadores = []  # Lista para almacenar los datos de todos los jugadores
 
             for link in links_jugadores:
                 self.driver.get(link)
                 try:
                         # Esperar a que aparezcan los elementos de nombre y apellido
                     try:
-
-                        #Cambiar a partir de aqui!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         
                         # Intenta encontrar el elemento del nombre del jugador
-                        nombre_element = WebDriverWait(self.driver, 5).until(
-                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[1]/div/div[1]/div[2]'))
+                        nombre_element = WebDriverWait(self.driver, 2).until(
+                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[1]/div/div[1]/div[2]'))
                         )
                         
                         # Si se encuentra el elemento, obtén el nombre del jugador
@@ -212,8 +211,8 @@ class Jugadores(JugadoresAbstractos):
                         nombre = None
                     
                     try:
-                        apellido_element = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[1]/div/div[1]/div[3]'))
+                        apellido_element = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[1]/div/div[1]/div[3]'))
                         )
 
                         apellido = unidecode(apellido_element.text)
@@ -228,10 +227,10 @@ class Jugadores(JugadoresAbstractos):
 
                     # Esperar a que el enlace de imagen sea visible
                     try:
-                        enlace_imagen = WebDriverWait(self.driver, 5).until(
-                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[1]/div/div[1]/div[1]/a'))
+                        enlace_imagen = WebDriverWait(self.driver, 2).until(
+                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[1]/div/div[1]/div[1]/a'))
                         )
-                        print(enlace_imagen)
+                        #print(enlace_imagen)
                     except:
                         enlace_imagen = None
                         
@@ -277,8 +276,8 @@ class Jugadores(JugadoresAbstractos):
                     # Obtener el nombre del equipo a partir del número usando el diccionario de mapeo
                     nombre_equipo = mapeo_equipos.get(numero_equipo, "Equipo Desconocido")
 
-                    posicion = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[1]/div/div[1]/div[1]/i'))
+                    posicion = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[1]/div/div[1]/div[1]/i'))
                     )
                     clases_css = posicion.get_attribute('class')
 
@@ -293,62 +292,75 @@ class Jugadores(JugadoresAbstractos):
                     print(posicion)
 
 
-                    valor = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[2]/div/div/div[1]/div[2]'))
+                    valor = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[2]/div/div/div[1]/div[2]'))
                     )
                     valor = valor.text
                     valor = valor.replace('.', '')
                     print(valor)
 
                     
-                    puntos_totales = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[2]/div/div/div[2]/div[2]'))
+                    puntos_totales = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[2]/div/div/div[2]/div[2]'))
                     )
                     puntos_totales = puntos_totales.text
                     print(puntos_totales)
 
-                    media = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[2]/div/div/div[3]/div[2]'))
+                    media = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[2]/div/div/div[3]/div[2]'))
                     )
                     media = media.text
                     media = media.replace(',', '.')
                     print(media)
 
-                    partidos = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[2]/div/div/div[4]/div[2]'))
+                    partidos = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[2]/div/div/div[4]/div[2]'))
                     )
                     partidos = partidos.text
                     print(partidos)
 
-                    goles = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[2]/div/div/div[5]/div[2]'))
+                    goles = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[2]/div/div/div[5]/div[2]'))
                     )
                     goles = goles.text
                     print(goles)
 
                     
-                    tarjetas = WebDriverWait(self.driver, 5).until(
-                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[5]/div[2]/div/div/div[6]/div[2]'))
+                    tarjetas = WebDriverWait(self.driver, 2).until(
+                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/div[2]/div/div/div[6]/div[2]'))
                     )
                     tarjetas = tarjetas.text
                     print(tarjetas)
 
 
                     try:
-                        media_en_casa = WebDriverWait(self.driver, 5).until(
-                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[6]/div/div[3]/div/div[2]/div[2]'))
+                        media_en_casa = WebDriverWait(self.driver, 2).until(
+                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[3]/div/div[2]/div[2]'))
                         )
 
                         media_en_casa = media_en_casa.text
                         media_en_casa = media_en_casa.replace(',', '.')
                         print(media_en_casa)
                     except:
-                        media_en_casa = None
-                        print(media_en_casa)
+                        try:
+                            media_en_casa = WebDriverWait(self.driver, 2).until(
+                                EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[2]/div/div[2]/div[2]'))
+                            )
+                            media_en_casa = media_en_casa.text
+                            media_en_casa = media_en_casa.replace(',', '.')
+                            print(media_en_casa)
+
+                        except:
+                            media_en_casa = WebDriverWait(self.driver, 2).until(
+                                EC.visibility_of_element_located((By.XPATH, '/html/body/div[6]/div[3]/div[3]/div/div[2]/div/div[2]/div[2]'))
+                            )
+                            media_en_casa = media_en_casa.text
+                            media_en_casa = media_en_casa.replace(',', '.')
+                            print(media_en_casa)
 
                     try:
-                        media_fuera = WebDriverWait(self.driver, 5).until(
-                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[6]/div/div[3]/div/div[3]/div[2]'))
+                        media_fuera = WebDriverWait(self.driver, 2).until(
+                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[3]/div/div[3]/div[2]'))
                         )
 
                         media_fuera = media_fuera.text
@@ -356,13 +368,26 @@ class Jugadores(JugadoresAbstractos):
                         print(media_fuera)
 
                     except:
-                        media_fuera = None
-                        print(media_fuera)
+                        try:
+                            media_fuera = WebDriverWait(self.driver, 2).until(
+                                EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[2]/div/div[3]/div[2]'))
+                            )
+                            media_fuera = media_fuera.text
+                            media_fuera = media_fuera.replace(',', '.')
+                            print(media_fuera)
+
+                        except:
+                            media_fuera = WebDriverWait(self.driver, 2).until(
+                                EC.visibility_of_element_located((By.XPATH, '/html/body/div[6]/div[3]/div[3]/div/div[2]/div/div[3]/div[2]'))
+                            )
+                            media_fuera = media_fuera.text
+                            media_fuera = media_fuera.replace(',', '.')
+                            print(media_fuera)
 
 
                     try:
-                        valor_subido_bajado_element = WebDriverWait(self.driver, 5).until(
-                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[6]/div/div[6]/span'))
+                        valor_subido_bajado_element = WebDriverWait(self.driver, 2).until(
+                            EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[6]/span'))
                         )
                         valor_subido_bajado_text = valor_subido_bajado_element.text.strip()  # Eliminar espacios en blanco al principio y al final
                         valor_subido_bajado_text = valor_subido_bajado_text.replace('.', '')
@@ -375,8 +400,8 @@ class Jugadores(JugadoresAbstractos):
 
                     except:
                         try:
-                            valor_subido_bajado_element = WebDriverWait(self.driver, 5).until(
-                                EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[6]/div/div[4]/span'))
+                            valor_subido_bajado_element = WebDriverWait(self.driver, 2).until(
+                                EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[4]/span'))
                             )
                             valor_subido_bajado_text = valor_subido_bajado_element.text.strip()  # Eliminar espacios en blanco al principio y al final
                             valor_subido_bajado_text = valor_subido_bajado_text.replace('.', '')
@@ -391,8 +416,8 @@ class Jugadores(JugadoresAbstractos):
 
                         except:
                             try:
-                                valor_subido_bajado_element = WebDriverWait(self.driver, 5).until(
-                                    EC.visibility_of_element_located((By.XPATH, '/html/body/div[7]/div[3]/div[3]/div/div[5]/span'))
+                                valor_subido_bajado_element = WebDriverWait(self.driver, 2).until(
+                                    EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[3]/span'))
                                 )
                                 valor_subido_bajado_text = valor_subido_bajado_element.text.strip()  # Eliminar espacios en blanco al principio y al final
                                 valor_subido_bajado_text = valor_subido_bajado_text.replace('.', '')
@@ -407,8 +432,8 @@ class Jugadores(JugadoresAbstractos):
 
                             except:
                                 try:
-                                    valor_subido_bajado_element = WebDriverWait(self.driver, 5).until(
-                                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[7]/div[3]/div[3]/div[1]/div[6]/span'))
+                                    valor_subido_bajado_element = WebDriverWait(self.driver, 2).until(
+                                        EC.visibility_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[5]/div/div[5]/span'))
                                     )
                                     valor_subido_bajado_text = valor_subido_bajado_element.text.strip()  # Eliminar espacios en blanco al principio y al final
                                     valor_subido_bajado_text = valor_subido_bajado_text.replace('.', '')
@@ -445,7 +470,7 @@ class Jugadores(JugadoresAbstractos):
 
 
                     # Localiza los elementos que contienen los valores de las jornadas
-                    jornadas = WebDriverWait(self.driver, 5).until(
+                    jornadas = WebDriverWait(self.driver, 3).until(
                         EC.visibility_of_all_elements_located((By.CSS_SELECTOR, '.line.btn.btn-player-gw'))
                     )
 
@@ -459,18 +484,18 @@ class Jugadores(JugadoresAbstractos):
 
                     # Ahora asignamos valores a las jornadas que tengan datos disponibles
                     puntos = []
-                    for jornada_index in range(28, 0, -1):  # Comenzamos desde la jornada 26 hasta la jornada 1 en orden descendente
+                    for jornada_index in range(29, 0, -1):  # Comenzamos desde la jornada 26 hasta la jornada 1 en orden descendente
                         jornada = jornadas[jornada_index - 1]  # Accedemos a la jornada correspondiente en la lista
 
                         # Esperamos a que el elemento del número de jornada sea visible
-                        numero_jornada_elemento = WebDriverWait(jornada, 5).until(
+                        numero_jornada_elemento = WebDriverWait(jornada, 3).until(
                             EC.visibility_of_element_located((By.CLASS_NAME, 'gw'))
                         )
 
                         # Verificamos si el elemento 'score' existe
                         try:
                             # Esperamos a que el elemento sea visible
-                            puntos_element = WebDriverWait(jornada, 5).until(
+                            puntos_element = WebDriverWait(jornada, 3).until(
                                 EC.visibility_of_element_located((By.CLASS_NAME, 'bar'))
                             )
                             puntos.append(puntos_element.text.strip())  # Agregamos los puntos a la lista
@@ -479,7 +504,7 @@ class Jugadores(JugadoresAbstractos):
                             # Si no hay puntos, verificamos si hay un elemento con la clase "status"
                             try:
                                 # Esperamos a que el elemento sea visible
-                                puntos_element = WebDriverWait(jornada, 5).until(
+                                puntos_element = WebDriverWait(jornada, 3).until(
                                     EC.visibility_of_element_located((By.CLASS_NAME, 'bar.negative'))
                                 )
                                 puntos.append(puntos_element.text.strip())  # Agregamos los puntos a la lista
@@ -491,7 +516,7 @@ class Jugadores(JugadoresAbstractos):
                     # Asignamos los datos de las jornadas a las variables correspondientes
                     jornada_1, jornada_2, jornada_3, jornada_4, jornada_5, jornada_6, jornada_7, jornada_8, jornada_9, jornada_10 = puntos[:10]
                     jornada_11, jornada_12, jornada_13, jornada_14, jornada_15, jornada_16, jornada_17, jornada_18, jornada_19, jornada_20 = puntos[10:20]
-                    jornada_21, jornada_22, jornada_23, jornada_24, jornada_25, jornada_26, jornada_27, jornada_28 = puntos[20:28]  # Solo asignamos valores hasta la jornada 26
+                    jornada_21, jornada_22, jornada_23, jornada_24, jornada_25, jornada_26, jornada_27, jornada_28, jornada_29 = puntos[20:29]  # Solo asignamos valores hasta la jornada 26
 
                     datos_jugador = {
                         "nombre": nombre,
@@ -550,14 +575,18 @@ class Jugadores(JugadoresAbstractos):
                         "jornada_38": jornada_38,
                     }
 
-                    lista_datos_jugadores.append(datos_jugador)  # Agrega el diccionario de datos del jugador a la lista
+                    try: 
+                        bbdd.MySQL.insertar_jugador_bbdd(datos_jugador)  
+
+                    except Exception as e:
+                        print(f"Error al insertar los datos del jugador en la base de datos: {str(e)}")
 
 
                 except:
                     pass
                     print(f"No se pudo obtener los datos del jugador: {link}")
 
-            return lista_datos_jugadores  # Retorna la lista de datos de todos los jugadores al final
+            return True  # Todos los jugadores insertados correctamente
         
         except Exception as e:
             print(f"Error en el método some_method: {str(e)}")
