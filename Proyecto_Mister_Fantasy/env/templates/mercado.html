@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fútbol Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="navigation">
+                <img src="img/logobyn.png" alt="">
+                <div class="links">
+                    <a href="index.html">          Inicio          </a> <!-- Cambiar ruta-->
+                    <a href="equipo.html">          Equipo          </a>
+                    <a href="mercado.html">         Mercado         </a>
+                    <a href="clasificacion.html">   Clasificación   </a>
+                    <a href="#predicciones">    Predicciones    </a>
+                    <a href="inicio.html">    Cerrar Sesión    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+            <button id="buscarButton" class="dropdown-button">Buscar</button>
+            <select name="filtro_posicion" id="filtro_posicion">
+                <option value="">Posición</option>
+                <option value="portero">Portero</option>
+                <option value="defensa">Defensa</option>
+                <option value="centrocampista">Centrocampista</option>
+                <option value="delantero">Delantero</option>
+            </select>
+            <select name="filtro_equipo" id="filtro_equipo">
+<option value="">Equipo</option>
+                <option value="equipo1">Alavés</option>
+                <option value="equipo2">Athletic Club</option>
+                <option value="equipo3">Atlético de Madrid</option>
+                <option value="equipo4">Barcelona</option>
+                <option value="equipo5">Betis</option>
+                <option value="equipo6">Cádiz</option>
+                <option value="equipo6">Celta de Vigo</option>
+                <option value="equipo8">Elche</option>
+                <option value="equipo9">Espanyol</option>
+                <option value="equipo10">Getafe</option>
+                <option value="equipo11">Granada</option>
+                <option value="equipo12">Levante</option>
+                <option value="equipo13">Mallorca</option>
+                <option value="equipo14">Osasuna</option>
+                <option value="equipo15">Rayo Vallecano</option>
+                <option value="equipo16">Real Madrid</option>
+                <option value="equipo17">Real Sociedad</option>
+                <option value="equipo18">Sevilla</option>
+                <option value="equipo19">Valencia</option>
+                <option value="equipo20">Villarreal</option>
+            </select>
+            <div class="precio-container">
+                <button id="precioButton" class="dropdown-button">Precio</button>
+                <div id="precioRange" class="precio-range" style="display: none;">
+                    <input type="range" id="priceRange" name="priceRange" min="0" max="300000000" step="5">
+                    <label for="priceRange">Precio: <span id="priceValue"></span></label>
+                </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Puntos</th>
+                        <th>Equipo</th>
+                        <th>Tarjetas</th>
+                        <th>Mercado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lionel Messi</td>
+                        <td>100</td>
+                        <td>Barcelona</td>
+                        <td>2</td>
+                        <td>€150M</td>
+                    </tr>
+                    <!-- Agrega más filas de datos aquí -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script>
+        const precioButton = document.getElementById('precioButton');
+        const precioRange = document.getElementById('precioRange');
+
+        precioButton.addEventListener('click', () => {
+            if (precioRange.style.display === 'none') {
+                precioRange.style.display = 'block';
+            } else {
+                precioRange.style.display = 'none';
+            }
+        });
+
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+
+        priceRange.addEventListener('input', () => {
+            priceValue.textContent = priceRange.value;
+        });
+    </script>
+</body>
+</html>

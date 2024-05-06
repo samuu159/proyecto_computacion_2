@@ -3,6 +3,7 @@ import bbdd
 import equipos
 import equipo_usuario
 import mercado
+import partidos
 from abc import ABC, abstractmethod
 
 class Main(ABC):
@@ -20,6 +21,10 @@ class Main(ABC):
 
     @abstractmethod
     def main_mercado_usuario(self):
+        pass
+
+    @abstractmethod
+    def main_partidos(self):
         pass
 
 class Programa(Main):
@@ -159,6 +164,18 @@ class Programa(Main):
 
         # Cerrar el navegador al finalizar
         driver.quit()
+
+
+    def main_partidos(self):
+
+        partido = partidos.Partidos()
+        mysql_instance = bbdd.MySQL()
+        partido.chromedriver()
+        driver = partido.driver
+        driver.get('https://www.sofascore.com/es/torneo/futbol/spain/laliga/8#id:52376,tab:matches')
+
+
+        pass
 
 
 if __name__ == "__main__":

@@ -1,0 +1,76 @@
+body {
+    background-color: #454C53;
+    font-family: "Literata-Regular", Helvetica;
+}
+
+/* HEADER */
+.navigation {
+    display: flex;
+    justify-content: space-around; /* Distribuye el espacio de manera equitativa alrededor de los elementos */
+    align-items: center; /* Centra los elementos verticalmente en el contenedor */
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+.navigation img {
+  width: 200px;
+  height: 70px;
+}
+
+.navigation a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* TABLA DE CLASIFICACIÓN */
+  .container {
+    width: 98%; /* O el ancho que desees para tu tabla */
+    margin: 0 auto; /* Centrar el contenedor en la página */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0; 
+    margin-top: 20px;
+    border-radius: 10px; 
+    overflow: hidden;
+  }
+
+  thead {
+    background-color: #666666;
+    color: #ffffff;
+  }
+
+  thead th {
+    text-align: center;
+  }
+
+
+  th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #a2a2a2;
+  }
+
+  tbody tr:nth-child(odd), tbody tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3) {
+    background-color: #90ee90; /* Light green */
+  }
+
+  tbody tr:last-child {
+    background-color: #ffcccb; /* Light red */
+  }
+
+ 

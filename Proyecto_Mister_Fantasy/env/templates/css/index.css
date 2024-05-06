@@ -1,0 +1,73 @@
+  /* DIV TOP PLAYERS */
+  .top-players {
+    padding: 20px 0; /* Un poco de padding vertical */
+    display: flex;
+    justify-content: space-around; /* Espaciado igual entre los elementos */
+    align-items: center;
+  }
+
+
+  .player {
+    background-color: #D9D9D9; /* Color de los círculos */
+    border-radius: 50%; /* Hacer los divs completamente redondos */
+    width: 100px; /* Ancho de los círculos */
+    height: 100px; /* Altura de los círculos */
+  }
+
+  .player-name {
+    text-align: center;
+    color: white; /* Color del texto */
+    font-family: Arial, sans-serif; /* Tipo de fuente */
+    margin-top: 10px; /* Espacio entre el círculo y el texto */
+
+  }
+
+
+  /* CARTAS JUGADORES */
+
+  .cards-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    background-color: #FFFFFF; /* Fondo blanco para la tarjeta */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 300px; /* Ancho de la tarjeta */
+    margin: 20px; /* Espacio entre las tarjetas */
+    padding: 20px; /* Padding dentro de las tarjetas */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-image {
+    background-color: #555; /* Fondo de la imagen, usar un color oscuro */
+    border-radius: 50%; /* Hace la imagen circular */
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px; /* Tamaño de la imagen */
+    margin-bottom: 20px; /* Espacio entre la imagen y el texto */
+  }
+
+  .card-title {
+    color: #000;
+    margin: 0;
+    margin-bottom: 20px; /* Espacio entre el título y la lista de estadísticas */
+  }
+
+  .stats-list {
+    width: 100%; /* Ocupa el ancho total de la tarjeta */
+    text-align: left; /* Alinea el texto a la izquierda */
+    list-style-type: none; /* Remueve los estilos de lista */
+    padding: 0; /* Remueve el padding predeterminado */
+  }
+
+  .stats-item {
+    margin-bottom: 10px; /* Espacio entre los elementos de la lista */
+  }
+
+  .stats-item span {
+    float: right; /* Alinea los valores a la derecha */
+  }

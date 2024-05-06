@@ -1,0 +1,65 @@
+body {
+    background-color: #454C53;
+    font-family: "Literata-Regular", Helvetica;
+    overflow: hidden;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.navigation img {
+    width: 200px;
+    height: 70px;
+}
+
+.links {
+    display: flex;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 16px;
+}
+
+.main {
+    padding: 20px;
+    color: white;
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    background-image: url('../img/soccer-ball-realistic-png.webp');
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    animation: moveBall 5s ease-in-out infinite alternate, rotateBall 2s linear infinite;
+}
+
+@keyframes moveBall {
+    from {
+        left: 0;
+    }
+    to {
+        left: calc(100% - 50px);
+    }
+}
+
+@keyframes rotateBall {
+    from {
+        transform: rotate(0deg);
+        transform-origin: center; /* Establece el origen de la rotación en el centro de la pelota */
+    }
+    to {
+        transform: rotate(360deg);
+        transform-origin: center;
+    }
+}
+
+

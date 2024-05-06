@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Login</title>
+</head>
+<header>
+    <img src = "img/logobyn.png">
+</header>
+<body>
+    <div class="contenedor_login">
+        <h1>LOGIN</h1>
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="input-container">
+                <img src="img/user.svg" class="icon" alt="User Icon">
+                <input type="text" name="username" placeholder="Usuario">
+            </div>
+            <div class="input-container">
+                <img src="img/lock.svg" class="icon" alt="Password Icon">
+                <input type="password" name="password" placeholder="Contraseña">
+            </div>
+            <div class="forgot-container" style="text-align: right;">
+                <a href="#" class="forgot-password">¿Has olvidado tu contraseña?</a>
+            </div>
+            <input type="submit" value="Iniciar Sesión">
+            <div class="register-container">
+                <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+                <div class="social-login">
+                    <a href="{{ url_for('google_login') }}" class="social-btn google-btn"><i class="fab fa-google"></i></a>
+                    <a href="{{ url_for('instagram_login') }}" class="social-btn instagram-btn"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

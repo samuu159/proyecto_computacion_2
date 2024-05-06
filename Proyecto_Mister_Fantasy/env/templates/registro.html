@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/registro.css">
+    <title>Registro</title>
+</head>
+<body>
+    <div class="split-screen-registro">
+        <div class="left-side-registro">
+            <div class="contenedor-form-registro">
+                <h1>REGISTRO ID PREDITECH INSIGHTS</h1>
+                <form action="{{ url_for('register') }}" method="POST">
+                    <div class="input-container-registro">
+                        <select name="saludo" required>
+                            <option value="">Seleccione un saludo...</option>
+                            <option value="Sr">Sr</option>
+                            <option value="Sra">Sra</option>
+                            <option value="Srto">Srto</option>
+                            <option value="Srta">Srta</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="input-container-registro">
+                        <input type="text" name="nombre" placeholder="Nombre" required>
+                    </div>
+                    <div class="input-container-registro">
+                        <input type="text" name="apellidos" placeholder="Apellidos" required>
+                    </div>
+                    <div class="input-container-registro">
+                        <input type="number" name="edad" placeholder="Edad" required>
+                    </div>
+                    <div class="input-container-registro">
+                        <input type="email" name="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-container-registro">
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                    </div>
+                    <div class="input-container-registro">
+                        <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
+                    </div>
+                    <input type="submit" value="Registrarse">
+                </form>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side-registro">
+            <img src="img/logobyn.png" alt="Logo" class="logo">
+            <!-- Contenido adicional para la derecha si es necesario -->
+        </div>
+    </div>
+</body>
+</html>

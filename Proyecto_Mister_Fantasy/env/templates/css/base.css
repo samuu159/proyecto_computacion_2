@@ -1,0 +1,36 @@
+body {
+    background-color: #454C53;
+    font-family: "Literata-Regular", Helvetica;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  font-family: "Literata-Regular", Helvetica;
+
+}
+
+
+
+/* HEADER */
+.navigation {
+    display: flex;
+    justify-content: space-around; /* Distribuye el espacio de manera equitativa alrededor de los elementos */
+    align-items: center; /* Centra los elementos verticalmente en el contenedor */
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
+
+.navigation img {
+  width: 200px;
+  height: 70px;
+}
+
+.navigation a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
